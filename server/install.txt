@@ -1,0 +1,3 @@
+npm i express mongoose jsonwebtoken dotenv agon2 cors body-parser
+npm i -g nodemon
+npm i jsonwebtoken
