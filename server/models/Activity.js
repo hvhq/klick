@@ -10,6 +10,10 @@ const activitySchema = new Schema({
             validator: Number.isInteger,
             message: '{VALUE} is not an integer value'
         }
+    },
+    name : {
+        type: String,
+        require: true
     }
 })
 

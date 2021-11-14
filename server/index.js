@@ -2,7 +2,10 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const authRouter = require('./route/auth.js');
+const authRouter = require('./route/auth.js')
+const manageRouter= require('./route/manage.js')
+
+const cors = require('cors')
 
 const connectDB = async () => {
     try {
@@ -25,7 +28,10 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
   }));
-app.use('/api/auth/', authRouter);
+app.use(cors())
+
+app.use('/api/auth/', authRouter)
+app.use('/api/manage/', manageRouter)
 
 const PORT = 9089
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
