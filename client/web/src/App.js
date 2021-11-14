@@ -6,6 +6,10 @@ import Auth from './views/Auth';
 import AuthContextProvider from './context/AuthContext';
 import DashBoard from './views/DashBoard';
 import DashBoardPlayer from './views/DashBoardPlayer';
+import LoginForm from './components/auth/LoginForm';
+import { Component } from 'react';
+import { Navigate } from 'react-router';
+import PrivateRoute from './routing/PrivateRoute';
 
 function App() {
   return (
@@ -17,8 +21,14 @@ function App() {
         <Route path='/join' element={ <Auth authRoute='join' />} />
         <Route path='/login' element = { <Auth authRoute='login' />} />
         <Route path='/register' element = { <Auth authRoute='register' />} />
-        <Route path='/dashboard' element = { <DashBoard /> } />
-        <Route path='/dashboardplayer' element={ <DashBoardPlayer /> } />
+        <Route path='/dashboard' element={ 
+            <PrivateRoute>
+              <DashBoard />
+            </PrivateRoute> } />
+        <Route path='/dashboardplayer' element={
+            <PrivateRoute  player={true}>
+              <DashBoardPlayer/> 
+            </PrivateRoute> } />
       </Routes>
     </Router>
     </AuthContextProvider>
